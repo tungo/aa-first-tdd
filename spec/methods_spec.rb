@@ -76,10 +76,34 @@ describe "#my_transpose" do
 end
 
 describe "#stock_picker" do
-  it "raise error if argument is not an array"
-  it "raise error if all of elements aren't number"
-  it "doesn't modify the original array"
-  it "return index of most profitable pair"
-  it "return index of two days array"
-  it "return nil if there aren't profitable pairs"
+  it "raise error if argument is not an array" do
+    expect { stock_picker(3) }.to raise_error("Argument is not an array")
+  end
+  it "raise error if all of elements aren't number" do
+    expect { stock_picker(["string"]) }.to raise_error("Argument is not an array of numbers")
+  end
+  let(:arr) { [1, 2, 3, 4] }
+  let(:r) { stock_picker(arr) }
+  it "doesn't modify the original array" do
+    expect(r).not_to be(arr)
+  end
+
+  it "return index of most profitable pair" do
+    expect(stock_picker([2, 1, 5, 8, 3, 4, 6])).to eq([1, 3])
+  end
+
+  it "return index of two days array" do
+    expect(stock_picker([2, 4])).to eq([0, 1])
+  end
+
+  it "return nil if there aren't profitable pairs" do
+    expect(stock_picker([9, 8, 7, 6, 5, 4, 3])).to be_nil
+  end
+
+  it "return correct days for an odd number of elements array" do
+    expect(stock_picker([2, 1, 5, 3, 7, 4, 7])).to eq([1, 4])
+  end
+  it "return correct days for an even number of elements array" do
+    expect(stock_picker([4, 8, 3, 6, 1, 9])).to eq([4, 5])
+  end
 end
