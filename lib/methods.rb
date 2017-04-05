@@ -1,3 +1,5 @@
+require "byebug"
+
 def my_uniq(arr)
   raise "Argument is not an array" unless arr.is_a?(Array)
 
@@ -41,5 +43,30 @@ def my_transpose(arr)
 end
 
 def stock_picker(prices)
+  raise "Argument is not an array" unless prices.is_a?(Array)
+  unless prices.all? { |el| el.is_a?(Numeric) }
+    raise "Argument is not an array of numbers"
+  end
 
+  result = []
+  max = 0
+
+  prices.each_with_index do |el, idx|
+    prices.drop(idx + 1).each_with_index do |el2, idx2|
+      # debugger
+      diff = el2 - el
+
+      if diff > max
+        max = diff
+        result = [idx, idx2 + idx + 1]
+      end
+    end
+  end
+
+  return nil if max == 0
+  result
 end
+
+# if __FILE__ == $PROGRAM_NAME
+#   p stock_picker([9, 8, 7, 6, 5, 4, 3])
+# end
