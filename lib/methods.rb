@@ -39,3 +39,7 @@ def my_transpose(arr)
 
   result
 end
+
+def stock_picker(prices)
+
+end

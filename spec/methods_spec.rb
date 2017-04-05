@@ -74,3 +74,12 @@ describe "#my_transpose" do
     expect(my_transpose(array3x3)).to eq([[0, 3, 6], [1, 4, 7], [2, 5, 8]])
   end
 end
+
+describe "#stock_picker" do
+  it "raise error if argument is not an array"
+  it "raise error if all of elements aren't number"
+  it "doesn't modify the original array"
+  it "return index of most profitable pair"
+  it "return index of two days array"
+  it "return nil if there aren't profitable pairs"
+end
