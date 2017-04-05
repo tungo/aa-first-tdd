@@ -27,8 +27,31 @@ describe "#my_uniq" do
 end
 
 describe "Array#two_sum" do
-  it "return empty array if array is empty"
+  it "return empty array if array is empty" do
+    expect([].two_sum).to eq([])
+  end
+
+  let(:arr) { [2, 3, -2, 1, 3, -1] }
+  let(:r) { arr.two_sum }
+
+  it "doesn't modify the original array" do
+    expect(r).not_to be(arr)
+  end
+
+  it "return empty array if no pairs" do
+    expect([1, 2, 3, 4].two_sum).to eq([])
+  end
+
+  it "returns pairs in order" do
+    expect([2, 3, -2, 1, 3, -1].two_sum).to eq([[0, 2], [3, 5]])
+  end
+end
+
+describe "#my_transpose" do
+  it "raise error if argument is not an array"
+  it "raise error if argument is not a 2d array"
+  it "return empty array if argument is an empty array"
   it "doesn't modify the original array"
-  it "return empty array if no pairs"
-  it "returns pairs in order"
+  it "transpose 2x2 array"
+  it "transpose 3x3 array"
 end
