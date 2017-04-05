@@ -46,12 +46,21 @@ describe TowersOfHanoi do
   end
 
   describe "#won?" do
-    it "returns true if game is won"
-    it "return false if game is not won yet"
-  end
+    it "returns true if game is won" do
+      towers_of_hanoi.move(0, 2)
+      towers_of_hanoi.move(0, 1)
+      towers_of_hanoi.move(2, 1)
+      towers_of_hanoi.move(0, 2)
+      towers_of_hanoi.move(1, 0)
+      towers_of_hanoi.move(1, 2)
+      towers_of_hanoi.move(0, 2)
 
-  describe "#render" do
-    it "prints towers"
+      expect(towers_of_hanoi.won?).to be true
+    end
+
+    it "return false if game is not won yet" do
+      expect(towers_of_hanoi.won?).to be false
+    end
   end
 
 end
