@@ -2,22 +2,47 @@ require 'rspec'
 require 'towers_of_hanoi'
 
 describe TowersOfHanoi do
-  subject(:TowersOfHanoi) { TowersOfHanoi.new }
+  subject(:towers_of_hanoi) { TowersOfHanoi.new }
 
   describe "#initialize" do
-    it "initialize a towers array" 
+    it "initialize a towers array" do
+      expect(towers_of_hanoi.towers).to eq([[3, 2, 1], [], []])
+    end
   end
 
   describe "#play" do
-    it "call #render"
-    it "call #won?"
+    it "call #render" do
+      expect(towers_of_hanoi).to receive(:render)
+      towers_of_hanoi.play
+    end
+
+    it "call #won?" do
+      expect(towers_of_hanoi).to receive(:won?)
+      towers_of_hanoi.play
+    end
 
   end
 
-  describe "#move" do
+  describe "#play_move" do
     it "call gets"
-    it "update the towers array"
-    it "checks if a move is legal"
+  end
+
+  describe "#move" do
+    it "update the towers array" do
+      towers_of_hanoi.move(0, 2)
+      expect(towers_of_hanoi.towers).to eq([[3, 2], [], [1]])
+    end
+
+    it "doesn't move larger disc over smaller disc" do
+      towers_of_hanoi.move(0, 2)
+      towers_of_hanoi.move(0, 2)
+      expect(towers_of_hanoi.towers).to eq([[3, 2], [], [1]])
+    end
+
+    it "doesn't move empty towers" do
+      towers_of_hanoi.move(1, 2)
+      expect(towers_of_hanoi.towers).to eq([[3, 2, 1], [], []])
+    end
   end
 
   describe "#won?" do
