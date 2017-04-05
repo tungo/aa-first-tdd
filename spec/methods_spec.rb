@@ -48,10 +48,29 @@ describe "Array#two_sum" do
 end
 
 describe "#my_transpose" do
-  it "raise error if argument is not an array"
-  it "raise error if argument is not a 2d array"
-  it "return empty array if argument is an empty array"
-  it "doesn't modify the original array"
-  it "transpose 2x2 array"
-  it "transpose 3x3 array"
+  it "raise error if argument is not an array" do
+    expect { my_transpose(3) }.to raise_error("Argument is not an array")
+  end
+
+  it "raise error if argument is not a 2d array" do
+    expect { my_transpose([1, 2, 3]) }.to raise_error("Argument is not a 2d array")
+  end
+
+  let(:arr) { [[1, 2], [1, 2]] }
+  let(:r) { my_transpose(arr) }
+
+  it "doesn't modify the original array" do
+    expect(r).not_to be(arr)
+  end
+
+  it "transpose 2x2 array" do
+    expect(my_transpose([[1, 2], [3, 4]])).to eq([[1, 3], [2, 4]])
+  end
+
+  it "transpose 3x3 array" do
+    array3x3 = [[0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8]]
+    expect(my_transpose(array3x3)).to eq([[0, 3, 6], [1, 4, 7], [2, 5, 8]])
+  end
 end

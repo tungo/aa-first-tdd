@@ -24,5 +24,18 @@ class Array
 end
 
 def my_transpose(arr)
-  
+  raise "Argument is not an array" unless arr.is_a?(Array)
+  raise "Argument is not a 2d array" unless arr.all?{|el| el.is_a?(Array)}
+  result = []
+
+  arr.size.times do |col|
+    temp = []
+    arr.first.size.times do |row|
+      temp << arr[row][col]
+    end
+
+    result << temp
+  end
+
+  result
 end
